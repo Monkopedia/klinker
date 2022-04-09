@@ -1,12 +1,12 @@
 /*
  * Copyright 2022 Jason Monk
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     https://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     `java-gradle-plugin`
 
     id("org.jetbrains.kotlin.jvm") version "1.6.20"
+    id("com.gradle.plugin-publish") version "1.0.0-rc-1"
     `maven-publish`
     `signing`
 }
@@ -27,6 +29,7 @@ repositories {
 }
 
 group = "com.monkopedia.klinker"
+description = "Tool to link kotlin/native binaries with clang or other linkers"
 
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
@@ -34,6 +37,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20")
+    implementation("com.google.guava:guava:31.1-jre")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 
@@ -50,7 +54,7 @@ gradlePlugin {
         id = "com.monkopedia.klinker.plugin"
         implementationClass = "com.monkopedia.klinker.KlinkerPlugin"
         displayName = "Klinker Gradle Plugin"
-        description = "Tool to link kotlin/native binaries with clang or other linkers"
+        description = project.description
     }
 }
 
@@ -78,27 +82,30 @@ tasks.withType<KotlinCompile> {
 publishing {
     publications.all {
         if (this !is MavenPublication) return@all
-        pom {
-            name.set("klinker-gradle-plugin")
-            description.set("Tool to link kotlin/native binaries with clang or other linkers")
-            url.set("http://www.github.com/Monkopedia/klinker")
-            licenses {
-                license {
-                    name.set("The Apache License, Version 2.0")
-                    url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+
+        afterEvaluate {
+            pom {
+                name.set("klinker-gradle-plugin")
+                description.set(project.description)
+                url.set("http://www.github.com/Monkopedia/klinker")
+                licenses {
+                    license {
+                        name.set("The Apache License, Version 2.0")
+                        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                    }
                 }
-            }
-            developers {
-                developer {
-                    id.set("monkopedia")
-                    name.set("Jason Monk")
-                    email.set("monkopedia@gmail.com")
+                developers {
+                    developer {
+                        id.set("monkopedia")
+                        name.set("Jason Monk")
+                        email.set("monkopedia@gmail.com")
+                    }
                 }
-            }
-            scm {
-                connection.set("scm:git:git://github.com/Monkopedia/klinker.git")
-                developerConnection.set("scm:git:ssh://github.com/Monkopedia/klinker.git")
-                url.set("http://github.com/Monkopedia/klinker/")
+                scm {
+                    connection.set("scm:git:git://github.com/Monkopedia/klinker.git")
+                    developerConnection.set("scm:git:ssh://github.com/Monkopedia/klinker.git")
+                    url.set("http://github.com/Monkopedia/klinker/")
+                }
             }
         }
     }
@@ -113,7 +120,14 @@ publishing {
     }
 }
 
+pluginBundle {
+    website = "https://github.com/monkopedia/klinker"
+    vcsUrl = "https://github.com/monkopedia/klinker"
+
+    description = project.description
+    tags = listOf("kotlin", "kotlin/native", "linker")
+}
+
 signing {
     useGpgCmd()
-    sign(publishing.publications)
 }
