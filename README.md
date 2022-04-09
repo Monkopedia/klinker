@@ -1,5 +1,9 @@
 # Klinker
 
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Kotlin](https://img.shields.io/badge/kotlin-1.6.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
+[![Maven Central](https://img.shields.io/maven-central/v/com.monkopedia.klinker/plugin/0.1.1)](https://search.maven.org/artifact/com.monkopedia.klinker/plugin/0.1.1/pom)
+
 Klinker is a gradle plugin making it possible to link kotlin native executables with custom
 linkers and options. It does this by creating a static library for kotlin compilation, then
 generates a c+kotlin wrapper that calls into kotlin to start the app, finally using the specified
