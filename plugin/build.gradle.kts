@@ -45,16 +45,22 @@ dependencies {
 }
 
 java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
     withJavadocJar()
     withSourcesJar()
 }
 
 gradlePlugin {
+    website = "https://github.com/monkopedia/klinker"
+    vcsUrl = "https://github.com/monkopedia/klinker"
+
+    description = project.description
     val klinker by plugins.creating {
         id = "com.monkopedia.klinker.plugin"
         implementationClass = "com.monkopedia.klinker.KlinkerPlugin"
         displayName = "Klinker Gradle Plugin"
         description = project.description
+        tags = listOf("kotlin", "kotlin/native", "linker")
     }
 }
 
@@ -118,14 +124,6 @@ publishing {
             }
         }
     }
-}
-
-pluginBundle {
-    website = "https://github.com/monkopedia/klinker"
-    vcsUrl = "https://github.com/monkopedia/klinker"
-
-    description = project.description
-    tags = listOf("kotlin", "kotlin/native", "linker")
 }
 
 signing {

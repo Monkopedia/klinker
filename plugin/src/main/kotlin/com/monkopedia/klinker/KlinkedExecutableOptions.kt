@@ -55,6 +55,7 @@ data class KlinkedExecutableOptions(
     @Input
     var targetMain: String = "main",
     @Nested
+    @Optional
     var run: KlinkedRunOptions? = null,
 ) {
 

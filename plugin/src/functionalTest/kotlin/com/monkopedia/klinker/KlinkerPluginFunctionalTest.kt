@@ -53,7 +53,7 @@ class KlinkerPluginFunctionalTest {
                 |import com.monkopedia.klinker.klinkedExecutable
                 |plugins {
                 |    id("com.monkopedia.klinker.plugin")
-                |    kotlin("multiplatform") version "1.6.20"
+                |    kotlin("multiplatform") version "1.9.10"
                 |}
                 |
                 |repositories {
@@ -80,7 +80,7 @@ class KlinkerPluginFunctionalTest {
                 |        }
                 |    }
                 |    sourceSets["nativeMain"].dependencies {
-                |        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1-native-mt")
+                |        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
                 |    }
                 |}
             """.trimMargin()

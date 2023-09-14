@@ -37,6 +37,7 @@ internal open class GenerateKotlinTask : DefaultTask() {
         val targetImport = if (targetList.size > 1) "import $targetMain" else ""
         output.writeText(
             """
+            |@file:OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
             |import kotlinx.cinterop.*
             |$targetImport
             |
