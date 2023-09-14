@@ -18,8 +18,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     `java-gradle-plugin`
 
-    id("org.jetbrains.kotlin.jvm") version "1.6.20"
-    id("com.gradle.plugin-publish") version "1.0.0-rc-1"
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.gradle.publish)
     `maven-publish`
     `signing`
 }
@@ -36,8 +36,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.20")
-    implementation("com.google.guava:guava:31.1-jre")
+    implementation(libs.kotlin.gradle)
+    implementation(libs.guava)
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
 

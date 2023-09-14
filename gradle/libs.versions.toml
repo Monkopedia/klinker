@@ -1,0 +1,12 @@
+[versions]
+guava = "31.1-jre"
+gradleplugin = "1.0.0-rc-1"
+kotlin = "1.6.10"
+
+[libraries]
+guava = { module = "com.google.guava:guava", version.ref = "guava"}
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+
+[plugins]
+gradle-publish = { id = "com.gradle.plugin-publish", version.ref = "gradleplugin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
