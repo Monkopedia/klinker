@@ -1,3 +1,7 @@
+# Archived warning
+
+This plugin doesn't appear to be necessary with newer versions of kotlin (like 2.0).
+
 # Klinker
 
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
